@@ -26,4 +26,5 @@ data class Pokemon(
         val listStr = url.split("/")
         return listStr[6]
     }
+
 }
