@@ -13,9 +13,6 @@ abstract class AppDataBase : RoomDatabase() {
     abstract fun pokemonDAO() : PokemonDAO
 
     companion object {
-        @Volatile
-        private var INSTANCE: AppDataBase? = null
-
 
         fun getDataBase(context: Context): AppDataBase {
             return Room.databaseBuilder(
