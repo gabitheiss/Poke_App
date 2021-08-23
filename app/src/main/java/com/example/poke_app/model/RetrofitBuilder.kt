@@ -7,14 +7,14 @@ import retrofit2.create
 
 object RetrofitBuilder {
 
-    private val retrofitFake = Retrofit.Builder()
+    private val retrofit = Retrofit.Builder()
         .baseUrl("https://pokeapi.co")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
 
     fun getPokeService(): PokeService{
-        return retrofitFake.create(PokeService::class.java)
+        return retrofit.create(PokeService::class.java)
 
     }
 

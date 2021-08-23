@@ -11,8 +11,9 @@ class PokeRepository {
     fun getPokemons(callback: (PokeResponse?, String?) -> Unit) {
 
         val retrofitSerice = RetrofitBuilder.getPokeService()
-        val call = RetrofitBuilder.getAll()
+        val call = RetrofitBuilder.getPokeService().getAll()
         call.enqueue(object : Callback<PokeResponse> {
+
             override fun onResponse(call: Call<PokeResponse>, response: Response<PokeResponse>) {
                 if (response.body() != null) {
                     response.body()?.let { pokeResponse ->

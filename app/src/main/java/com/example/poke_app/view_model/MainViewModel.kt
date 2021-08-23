@@ -6,8 +6,10 @@ import com.example.poke_app.repository.PokeRepository
 class MainViewModel : ViewModel() {
 
 
+    private val pokemonRepository = PokeRepository()
+
     fun getPokemons() {
-        PokeRepository.getPokemons() { pokeResponse, error ->
+        pokemonRepository.getPokemons() { pokeResponse, error ->
             print("")
         }
 
