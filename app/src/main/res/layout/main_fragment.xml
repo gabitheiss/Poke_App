@@ -1,19 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".view.MainFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TextView
+        android:id="@+id/idTitle"
+        android:layout_width="334dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="76dp"
+        android:text="Pokedex"
+        android:textSize="30dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/imageViewMeio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="20dp"
+        android:src="@drawable/ic_vector_esq"
+        app:layout_constraintEnd_toStartOf="@+id/idImageViewEsq"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/idImageViewEsq"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="88dp"
+        android:src="@drawable/ic_vector_meio"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/idImageViewDir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="20dp"
+        android:src="@drawable/ic_vector_dir"
+        app:layout_constraintStart_toEndOf="@+id/idImageViewEsq"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/idSearch"
+        android:layout_width="334dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="124dp"
+        android:text="Search for Pokemon by name or using the
+        National Pokedex number."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/idBackground"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="211dp"
+        android:src="@drawable/ic_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/idPlaceholder"
+        android:layout_width="235dp"
+        android:layout_height="19dp"
+        android:text="What Pokemon are you looking for?"
+        app:layout_constraintBottom_toBottomOf="@+id/idBackground"
+        android:layout_marginRight="40dp"
+        app:layout_constraintEnd_toEndOf="@+id/idBackground"
+        app:layout_constraintTop_toTopOf="@+id/idBackground" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_lupa"
+        app:layout_constraintBottom_toBottomOf="@+id/idBackground"
+        app:layout_constraintEnd_toStartOf="@+id/idPlaceholder"
+        app:layout_constraintStart_toStartOf="@+id/idBackground"
+        app:layout_constraintTop_toTopOf="@+id/idBackground" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/idContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idBackground" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+
