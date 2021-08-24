@@ -3,15 +3,12 @@ package com.example.poke_app.view
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.poke_app.R
 import com.example.poke_app.adapter.AdapterList
-import com.example.poke_app.adapter.PokemonViewHolder
 import com.example.poke_app.databinding.MainFragmentBinding
 import com.example.poke_app.model.Pokemon
 import com.example.poke_app.view_model.MainViewModel

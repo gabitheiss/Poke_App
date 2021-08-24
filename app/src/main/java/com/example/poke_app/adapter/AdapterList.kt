@@ -3,13 +3,12 @@ package com.example.poke_app.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.poke_app.R
 import com.example.poke_app.databinding.ItensListPokemonBinding
-import com.example.poke_app.databinding.MainFragmentBinding
 import com.example.poke_app.model.Pokemon
+import com.example.poke_app.utils.toUpperFirstChar
 
 
 class AdapterList(var listOfPokemons : MutableList<Pokemon>):
@@ -46,8 +45,14 @@ class PokemonViewHolder(itemView : View): RecyclerView.ViewHolder(itemView){
 
     fun bind(pokemon : Pokemon){
 
-        binding.idName.text = pokemon.name
+        binding.idName.text = pokemon.name.toUpperFirstChar()
         binding.idId.text = "#${pokemon.extractIdFromUrl()}"
+
+        pokemon.details?.let{
+            Glide.with(itemView.context)
+                .load(it.sprites.other?.artWork?.image)
+                .into(binding.idImagem)
+        }
     }
 
 }

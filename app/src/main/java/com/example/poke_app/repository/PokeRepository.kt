@@ -4,6 +4,7 @@ import android.content.Context
 import com.example.poke_app.database.AppDataBase
 import com.example.poke_app.model.PokeResponse
 import com.example.poke_app.model.Pokemon
+import com.example.poke_app.model.PokemonDetails
 import com.example.poke_app.model.RetrofitBuilder
 import retrofit2.Call
 import retrofit2.Callback
@@ -13,10 +14,10 @@ class PokeRepository(private val context: Context) {
 
 
     private val database = AppDataBase.getDataBase(context)
+    val service = RetrofitBuilder.getPokeService()
 
     fun fetchAll(onComplete: (PokeResponse?, String?) -> Unit) {
-        val retrofitSerice = RetrofitBuilder.getPokeService()
-        val call = retrofitSerice.getAll()
+        val call = service.getAll()
         call.enqueue(object : Callback<PokeResponse> {
 
             override fun onResponse(call: Call<PokeResponse>, response: Response<PokeResponse>) {
@@ -33,6 +34,27 @@ class PokeRepository(private val context: Context) {
         })
     }
 
+
+    //Irá retornar os detalhes do pokemon
+    //@param pokeId String - id do pokemon que extraimos da url no primeiro service
+
+    fun fetchPokemonDetails(pokeId: String, onComplete: (PokemonDetails?, String?) -> Unit){
+        val call = service.getDetails(pokeId)
+        call.enqueue(object : Callback<PokemonDetails>{
+            override fun onResponse(call: Call<PokemonDetails>, response: Response<PokemonDetails>){
+                if (response.body() != null) {
+                    onComplete(response.body(), null)
+                } else {
+                    onComplete(null, "Pokemon não encontrado")
+                }
+            }
+            override fun onFailure(call: Call<PokemonDetails>, t: Throwable) {
+                onComplete(null, t.message)
+            }
+        })
+    }
+
+    // Função que irá receber uma lista de Pokemon e irá add no database local
     fun insertIntoDatabase(items: List<Pokemon>) {
         val dao = database.pokemonDAO()
         items.forEach { poke ->
@@ -41,6 +63,13 @@ class PokeRepository(private val context: Context) {
 
     }
 
+    // Função que irá receber Pokemon e irá add no database local
+    fun insertIntoDatabase(pokemon: Pokemon) {
+        val dao = database.pokemonDAO()
+        dao.insert(pokemon = pokemon)
+    }
+
+    // Buscamos todos os Pokemons que já estão dentro do database local
     fun fetchAllFromDatabase(): List<Pokemon>? {
         val dao = database.pokemonDAO()
         return dao.all()

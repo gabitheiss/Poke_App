@@ -2,6 +2,7 @@ package com.example.poke_app.database.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.poke_app.model.Pokemon
 
@@ -18,7 +19,8 @@ interface PokemonDAO {
     fun byId(pokeId : String) : Pokemon
 
     //insert para inserir no banco
-    @Insert
+    //onConflict server para validar quando o insert identifica algum resigtro duplicado
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(pokemon: Pokemon)
 
 }
