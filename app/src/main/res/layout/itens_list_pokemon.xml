@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="115dp"
             android:background="#8BBE8A"
-            android:padding="12dp">
+           >
 
 
             <TextView
@@ -61,7 +61,6 @@
                 android:id="@+id/imgPokeball"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:scaleType="centerCrop"
                 android:src="@drawable/ic_pokeball"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
