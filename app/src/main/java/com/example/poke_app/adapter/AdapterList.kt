@@ -1,5 +1,6 @@
 package com.example.poke_app.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,12 +12,13 @@ import com.example.poke_app.model.Pokemon
 import com.example.poke_app.utils.toUpperFirstChar
 
 
-class AdapterList(var listOfPokemons : MutableList<Pokemon>):
-RecyclerView.Adapter<PokemonViewHolder>(){
+class AdapterList(var listOfPokemons: MutableList<Pokemon>) :
+    RecyclerView.Adapter<PokemonViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.itens_list_pokemon, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.itens_list_pokemon, parent, false)
         return PokemonViewHolder(view)
     }
 
@@ -39,20 +41,29 @@ RecyclerView.Adapter<PokemonViewHolder>(){
 }
 
 
-class PokemonViewHolder(itemView : View): RecyclerView.ViewHolder(itemView){
+class PokemonViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     private val binding = ItensListPokemonBinding.bind(itemView)
 
-    fun bind(pokemon : Pokemon){
+
+    @SuppressLint("ResourceType")
+    fun bind(pokemon: Pokemon) {
 
         binding.idName.text = pokemon.name.toUpperFirstChar()
         binding.idId.text = "#${pokemon.extractIdFromUrl()}"
 
-        pokemon.details?.let{
+        pokemon.details?.let {
             Glide.with(itemView.context)
                 .load(it.sprites.other?.artWork?.image)
                 .into(binding.idImagem)
+
+
+            pokemon.details?.let {
+                val bgColor = it.type[0].type.extractBgColor()
+                binding.idCard.setCardBackgroundColor(itemView.context.getColor(bgColor))
+            }
         }
     }
-
 }
+
+

@@ -66,7 +66,7 @@ class PokeRepository(private val context: Context) {
     // Função que irá receber Pokemon e irá add no database local
     fun insertIntoDatabase(pokemon: Pokemon) {
         val dao = database.pokemonDAO()
-        dao.insert(pokemon = pokemon)
+        dao.insert(pokemon)
     }
 
     // Buscamos todos os Pokemons que já estão dentro do database local
