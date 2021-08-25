@@ -75,11 +75,12 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
-    <TextView
+    <EditText
         android:id="@+id/idPlaceholder"
         android:layout_width="235dp"
-        android:layout_height="19dp"
-        android:text="What Pokemon are you looking for?"
+        android:layout_height="40dp"
+        android:textSize="14dp"
+        android:hint="What Pokemon are you looking for?"
         app:layout_constraintBottom_toBottomOf="@+id/idBackground"
         android:layout_marginRight="40dp"
         app:layout_constraintEnd_toEndOf="@+id/idBackground"
