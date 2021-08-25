@@ -85,4 +85,5 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         val bottomSheet = FiltersFragment.newInstance()
         bottomSheet.show(parentFragmentManager, "dialog_filters")
     }
+
 }

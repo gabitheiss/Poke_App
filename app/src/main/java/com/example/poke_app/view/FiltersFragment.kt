@@ -30,4 +30,7 @@ class FiltersFragment : BottomSheetDialogFragment() {
         viewModel = ViewModelProvider(this).get(FiltersViewModel::class.java)
     }
 
+    //funcao criada para chamar o tema estilizado, utilizaremos para o bottom sheet (cantos arredondados)
+    override fun getTheme(): Int = R.style.CustomBottomSheetDialog
+
 }
