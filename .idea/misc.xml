@@ -4,17 +4,26 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/ic_bug.xml" value="0.25364583333333335" />
+        <entry key="app/src/main/res/drawable/ic_bug_background.xml" value="0.24974358974358973" />
+        <entry key="app/src/main/res/drawable/ic_dark.xml" value="0.24974358974358973" />
+        <entry key="app/src/main/res/drawable/ic_electric.xml" value="0.24974358974358973" />
+        <entry key="app/src/main/res/drawable/ic_fairy_background.xml" value="0.25364583333333335" />
+        <entry key="app/src/main/res/drawable/ic_fire.xml" value="0.22870370370370371" />
+        <entry key="app/src/main/res/drawable/ic_fire_background.xml" value="0.25364583333333335" />
+        <entry key="app/src/main/res/drawable/ic_flying_background.xml" value="0.25364583333333335" />
         <entry key="app/src/main/res/drawable/ic_lupa.xml" value="0.25364583333333335" />
         <entry key="app/src/main/res/drawable/ic_pokeball.xml" value="0.20277777777777778" />
         <entry key="app/src/main/res/drawable/ic_vector_dir.xml" value="0.25364583333333335" />
         <entry key="app/src/main/res/drawable/ic_vector_esq.xml" value="0.25364583333333335" />
         <entry key="app/src/main/res/drawable/ic_vector_meio.xml" value="0.25364583333333335" />
         <entry key="app/src/main/res/drawable/pokeball.xml" value="0.20277777777777778" />
-        <entry key="app/src/main/res/layout/botton_sheet_layout.xml" value="0.2375" />
+        <entry key="app/src/main/res/layout/botton_sheet_layout.xml" value="0.1301031852848811" />
         <entry key="app/src/main/res/layout/cards_type.xml" value="0.8928546010576792" />
+        <entry key="app/src/main/res/layout/filters_fragment.xml" value="0.2234375" />
         <entry key="app/src/main/res/layout/itens_list_pokemon.xml" value="0.25" />
         <entry key="app/src/main/res/layout/main_activity.xml" value="0.11875" />
         <entry key="app/src/main/res/layout/main_fragment.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/vectors_bottom_sheet.xml" value="0.335" />
       </map>
     </option>
   </component>

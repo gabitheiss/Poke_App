@@ -13,6 +13,7 @@ import com.example.poke_app.R
 import com.example.poke_app.adapter.AdapterList
 import com.example.poke_app.databinding.MainFragmentBinding
 import com.example.poke_app.model.Pokemon
+import com.example.poke_app.view_model.FiltersViewModel
 import com.example.poke_app.view_model.MainViewModel
 import com.google.android.material.snackbar.Snackbar
 
@@ -23,8 +24,8 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     }
 
     private lateinit var viewModel: MainViewModel
-    private lateinit var binding : MainFragmentBinding
-    private lateinit var recyclerView : RecyclerView
+    private lateinit var binding: MainFragmentBinding
+    private lateinit var recyclerView: RecyclerView
     private val adapter = AdapterList(mutableListOf())
 
 
@@ -54,30 +55,34 @@ class MainFragment : Fragment(R.layout.main_fragment) {
 
         //funcao para buscar os caracteres digitados no input - antes, durante e depois da digitacao
         //pegamos os valores durante a digitacao
-        binding.idPlaceholder.addTextChangedListener(object : TextWatcher{
+        binding.idPlaceholder.addTextChangedListener(object : TextWatcher {
 
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
 
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                p0?.let{
-                    if (it.length > 2){
+                p0?.let {
+                    if (it.length > 2) {
                         viewModel.fetchFilteredFromDataBase(requireContext(), it.toString())
                     }
                 }
-
             }
 
             override fun afterTextChanged(p0: Editable?) {
-               p0?.let{
-                   if (it.isEmpty()){
-                       viewModel.fetchAllFromDatabase(requireContext())
-                   }
-               }
+                p0?.let {
+                    if (it.isEmpty()) {
+                        viewModel.fetchAllFromDatabase(requireContext())
+                    }
+                }
             }
         })
+        //para chamar o bottom sheet, click no botão do menu superior
+        binding.idButtonFilters.setOnClickListener { showBottomSheetDialog() }
     }
 
+    fun showBottomSheetDialog() {
+        val bottomSheet = FiltersFragment.newInstance()
+        bottomSheet.show(parentFragmentManager, "dialog_filters")
+    }
 }
