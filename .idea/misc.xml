@@ -3,13 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/ic_bug.xml" value="0.25364583333333335" />
         <entry key="app/src/main/res/drawable/ic_lupa.xml" value="0.25364583333333335" />
         <entry key="app/src/main/res/drawable/ic_pokeball.xml" value="0.20277777777777778" />
         <entry key="app/src/main/res/drawable/ic_vector_dir.xml" value="0.25364583333333335" />
         <entry key="app/src/main/res/drawable/ic_vector_esq.xml" value="0.25364583333333335" />
         <entry key="app/src/main/res/drawable/ic_vector_meio.xml" value="0.25364583333333335" />
         <entry key="app/src/main/res/drawable/pokeball.xml" value="0.20277777777777778" />
-        <entry key="app/src/main/res/layout/cards_type.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/cards_type.xml" value="0.8928546010576792" />
         <entry key="app/src/main/res/layout/itens_list_pokemon.xml" value="0.25" />
         <entry key="app/src/main/res/layout/main_activity.xml" value="0.11875" />
         <entry key="app/src/main/res/layout/main_fragment.xml" value="0.25" />
