@@ -22,7 +22,7 @@
     <color name="bg_type_fire">#FFA756</color>
     <color name="bg_type_ground">#F78551</color>
     <color name="bg_type_psychic">#FF6568</color>
-    <color name="bg_type_eletric">#F2CB55</color>
+    <color name="bg_type_electric">#F2CB55</color>
     <color name="bg_type_flying">#83A2E3</color>
     <color name="bg_type_ice">#91D8DF</color>
     <color name="bg_type_rock">#D4C294</color>

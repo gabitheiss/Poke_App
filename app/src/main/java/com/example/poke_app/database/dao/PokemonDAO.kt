@@ -23,4 +23,11 @@ interface PokemonDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(pokemon: Pokemon)
 
+    //funcao para consulta no input, % || :query || % percorre a string inteira para ver se contem
+    //os dados digitados . Se deixar somente % || no começo busca a primeira letra, se deixar
+    // || % so no final busca a última letra
+
+    @Query("SELECT * FROM pokemon WHERE poke_name LIKE '%' || :query || '%'")
+    fun fetchFiltered(query : String) : List<Pokemon>
+
 }

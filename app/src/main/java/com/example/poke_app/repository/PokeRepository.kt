@@ -75,5 +75,12 @@ class PokeRepository(private val context: Context) {
         return dao.all()
     }
 
+    //buscamos os Pokemons que ja estao salvos no banco local, e chamamos a função de filtro
+    //que foi criada no DAO
+    fun fetchAllFromDataBaseWithFilter(query: String): List<Pokemon>?{
+        val dao = database.pokemonDAO()
+        return dao.fetchFiltered(query.lowercase())
+    }
+
 
 }

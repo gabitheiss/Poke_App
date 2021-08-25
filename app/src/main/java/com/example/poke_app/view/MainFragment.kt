@@ -2,6 +2,8 @@ package com.example.poke_app.view
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.lifecycle.Observer
@@ -47,8 +49,35 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         viewModel.pokeResponse.observe(viewLifecycleOwner, productsObserver)
         viewModel.error.observe(viewLifecycleOwner, errorObserver)
 
-
         viewModel.fetchAllFromDatabase(requireContext())
+
+
+        //funcao para buscar os caracteres digitados no input - antes, durante e depois da digitacao
+        //pegamos os valores durante a digitacao
+        binding.idPlaceholder.addTextChangedListener(object : TextWatcher{
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                p0?.let{
+                    if (it.length > 2){
+                        viewModel.fetchFilteredFromDataBase(requireContext(), it.toString())
+                    }
+                }
+
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+               p0?.let{
+                   if (it.isEmpty()){
+                       viewModel.fetchAllFromDatabase(requireContext())
+                   }
+               }
+            }
+        })
     }
 
 }

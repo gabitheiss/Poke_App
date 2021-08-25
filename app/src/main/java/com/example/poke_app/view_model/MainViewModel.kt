@@ -61,4 +61,13 @@ class MainViewModel : ViewModel() {
         }
 
     }
+
+    fun fetchFilteredFromDataBase(context: Context, query:String){
+        val repository = PokeRepository(context)
+        val filteredList = repository.fetchAllFromDataBaseWithFilter(query)
+        filteredList?.let{
+            _pokeResponse.value = it
+        }
+
+    }
 }
