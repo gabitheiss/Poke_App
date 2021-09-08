@@ -4,8 +4,10 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.poke_app.model.Pokemon
 import com.example.poke_app.repository.PokeRepository
+import kotlinx.coroutines.launch
 
 class MainViewModel : ViewModel() {
 
@@ -16,6 +18,9 @@ class MainViewModel : ViewModel() {
     val _error = MutableLiveData<String>()
     var error : LiveData<String> = _error
 
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading : LiveData<Boolean> = _isLoading
+
 
 
     // Função que chamamos somente interna dentro do viewmodel.
@@ -24,27 +29,12 @@ class MainViewModel : ViewModel() {
 
     fun fetchAllFromServer(context: Context) {
         val repository = PokeRepository(context)
-        repository.fetchAll { response, error ->
-            response?.let {
-                _pokeResponse.value = it.results
+        _isLoading.value = true
 
-                loadPokeDetails(it.results, repository)
-            }
-            error?.let {
-                _error.value = it
-            }
-        }
-    }
-
-    private fun loadPokeDetails(pokemons: List<Pokemon>, repository: PokeRepository) {
-        pokemons.forEach { poke ->
-            repository.fetchPokemonDetails(pokeId = poke.extractIdFromUrl()) { details, _ ->
-                details?.let {
-
-                    poke.details = details
-                    repository.insertIntoDatabase(poke)
-
-                }
+        viewModelScope.launch {
+            repository.fetchAll()?.let { pokemons ->
+                _isLoading.value = false
+                _pokeResponse.value = pokemons
             }
         }
     }
@@ -62,12 +52,15 @@ class MainViewModel : ViewModel() {
 
     }
 
-    fun fetchFilteredFromDataBase(context: Context, query:String){
-        val repository = PokeRepository(context)
-        val filteredList = repository.fetchAllFromDataBaseWithFilter(query)
-        filteredList?.let{
-            _pokeResponse.value = it
-        }
 
-    }
+    //funcao que busca pokemons do banco de dados
+
+//    fun fetchFilteredFromDataBase(context: Context, query:String){
+//        val repository = PokeRepository(context)
+//        val filteredList = repository.fetchAllFromDataBaseWithFilter(query)
+//        filteredList?.let{
+//            _pokeResponse.value = it
+//        }
+//
+//    }
 }

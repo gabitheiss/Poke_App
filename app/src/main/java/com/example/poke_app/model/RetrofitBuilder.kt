@@ -15,7 +15,11 @@ object RetrofitBuilder {
 
     fun getPokeService(): PokeService{
         return retrofit.create(PokeService::class.java)
+    }
 
+    //criado para testar git flow
+    fun newTeste(): PokeService{
+        return retrofit.create(PokeService::class.java)
     }
 
 }

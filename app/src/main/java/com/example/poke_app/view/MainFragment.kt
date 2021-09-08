@@ -6,6 +6,8 @@ import android.text.Editable
 import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -29,55 +31,29 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     private val adapter = AdapterList(mutableListOf())
 
 
-    private val productsObserver = Observer<List<Pokemon>> { newList ->
+    private val pokemonsObserver = Observer<List<Pokemon>> { newList ->
         adapter.refresh(newList)
     }
     private val errorObserver = Observer<String> { error ->
         Snackbar.make(requireView(), error, Snackbar.LENGTH_LONG).show()
     }
+    private val observerLoading = Observer<Boolean> { isLoading ->
+        binding.progressBar.visibility = if (isLoading) VISIBLE else INVISIBLE
+    }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        recyclerView = view.findViewById(R.id.idContainer)
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = adapter
-
-
         binding = MainFragmentBinding.bind(view)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        viewModel.pokeResponse.observe(viewLifecycleOwner, productsObserver)
-        viewModel.error.observe(viewLifecycleOwner, errorObserver)
 
-        viewModel.fetchAllFromDatabase(requireContext())
+        binding.idContainer.layoutManager = LinearLayoutManager(requireContext())
+        binding.idContainer.adapter = adapter
 
+        viewModel.pokeResponse.observe(viewLifecycleOwner, pokemonsObserver)
+        viewModel.isLoading.observe(viewLifecycleOwner, observerLoading)
+        viewModel.fetchAllFromServer(requireContext())
 
-        //funcao para buscar os caracteres digitados no input - antes, durante e depois da digitacao
-        //pegamos os valores durante a digitacao
-        binding.idPlaceholder.addTextChangedListener(object : TextWatcher {
-
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                p0?.let {
-                    if (it.length > 2) {
-                        viewModel.fetchFilteredFromDataBase(requireContext(), it.toString())
-                    }
-                }
-            }
-
-            override fun afterTextChanged(p0: Editable?) {
-                p0?.let {
-                    if (it.isEmpty()) {
-                        viewModel.fetchAllFromDatabase(requireContext())
-                    }
-                }
-            }
-        })
-        //para chamar o bottom sheet, click no botão do menu superior
         binding.idButtonFilters.setOnClickListener { showBottomSheetDialog() }
     }
 
@@ -85,5 +61,11 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         val bottomSheet = FiltersFragment.newInstance()
         bottomSheet.show(parentFragmentManager, "dialog_filters")
     }
-
 }
+
+
+
+
+
+
+
